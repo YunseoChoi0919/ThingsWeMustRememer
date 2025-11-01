@@ -1,0 +1,179 @@
+/* src/styles/ArtworksPage.css */
+
+/* --- 기본 설정 --- */
+.artworks-page-container {
+    padding: 12px; /* 모바일 기본 패딩 */
+    height: 100vh;
+    box-sizing: border-box;
+    display: grid;
+    font-family: sans-serif; /* 기본 글꼴 설정 */
+}
+
+.main-title {
+    font-size: 20px;
+    font-weight: 800;
+    margin: 0;
+}
+
+/* --- 컴포넌트 내부 스타일 --- */
+.back-button {
+    /* BackButton.js */
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    min-width: 100px;
+}
+
+/* ArtworkList.js */
+.artwork-list-container {
+    overflow-y: auto;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    min-height: 0;
+}
+
+.artwork-list-item {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    background-color: #fff;
+    transition: background-color 0.1s ease;
+}
+
+.artwork-list-item:hover {
+    background-color: #f3f4f6;
+}
+
+.item-title {
+    margin: 0;
+    font-weight: 600;
+}
+
+.item-meta {
+    color: #6b7280;
+    font-size: 12px;
+}
+
+/* ArtworkDetail.js */
+.artwork-detail-container {
+    padding: 16px;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    overflow-y: auto;
+    height: 100%; /* 부모 div 높이 확보 */
+    box-sizing: border-box;
+}
+
+.detail-title {
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 20px;
+}
+
+.detail-meta {
+    color: #6b7280;
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+
+.detail-section {
+    margin-bottom: 16px;
+}
+
+.section-title {
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.prompt-content {
+    margin: 0;
+    padding: 8px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    background-color: #f9fafb;
+    white-space: pre-wrap; /* 줄 바꿈 유지 */
+    font-size: 14px;
+}
+
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag-item {
+    padding: 4px 8px;
+    border-radius: 16px;
+    background-color: #e0f2fe;
+    color: #0369a1;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.detail-file-name {
+    color: #4b5563;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+/* --- 📱 모바일 레이아웃 (768px 이하) --- */
+.artworks-page-container.mobile {
+    grid-template-rows: auto 1fr;
+    gap: 12px;
+}
+
+.detail-view-wrapper {
+    display: grid;
+    grid-template-rows: auto 1fr; /* 버튼 영역과 상세 내용 영역 분리 */
+    gap: 0;
+    min-height: 0;
+}
+
+.detail-content-area {
+    min-height: 0;
+    overflow: hidden;
+}
+
+/* --- 💻 데스크탑/태블릿 레이아웃 (769px 이상) --- */
+@media (min-width: 769px) {
+    .artworks-page-container.desktop {
+        padding: 16px;
+        grid-template-columns: 1fr 1fr; /* 2열 분할 */
+        gap: 24px;
+    }
+
+    .list-panel {
+        display: grid;
+        grid-template-rows: auto 1fr;
+        gap: 12px;
+        min-height: 0;
+    }
+
+    .main-title {
+        font-size: 22px;
+    }
+
+    .detail-panel {
+        min-height: 0;
+    }
+
+    .placeholder-message {
+        height: 100%;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+        text-align: center;
+        color: #6b7280;
+        padding: 16px;
+    }
+    
+    /* 데스크탑에서 BackButton 숨기기 (필요 없음) */
+    .back-button {
+        display: none;
+    }
+}
