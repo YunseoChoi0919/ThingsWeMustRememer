@@ -22,7 +22,9 @@ export default function ArtworksPage() {
   // 기본 목록 뷰
   return (
     <div className="artworks-page">
-      <h1 className="page-title">Artworks</h1>
+      <div className="page-title">우리가 잊지 말아야 할 것은 <br></br>무엇인가요 
+      <p className="page-subtitle">Archive web</p></div>
+      
       <ArtworkList onSelect={setSelected} />
     </div>
   );

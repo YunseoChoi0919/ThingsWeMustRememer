@@ -1,14 +1,38 @@
 /* --------------------
  * Global & Layout
  * -------------------- */
+
+ @font-face {
+    font-family: 'GounBatang';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunBatang-Regular.woff') format('woff');
+    font-weight: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'GounBatang';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunBatang-Bold.woff') format('woff');
+    font-weight: 700;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'NanumSquareRound';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
+    font-weight: normal;
+    font-display: swap;
+}
+
+
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif;
+  font-family:'GounBatang';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #fff;
+  background: #c6e3ff;
   color: #111827;
+  width: 100vw;
 }
 
 /* box-sizing을 전역 적용 */
@@ -24,6 +48,7 @@ body {
  */
 .artworks-page {
   padding: 16px;
+  width: 100vw;
   height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr;
@@ -32,10 +57,24 @@ body {
 }
 
 .page-title {
-  font-size: 22px;
+  font-size: 28px;
   font-weight: 800;
   margin: 0;
+  font-family: 'NanumSquareRound';
+  letter-spacing: -1.0px;
+  line-height: 1.3;
+  margin-bottom: 20px;
 }
+
+.page-subtitle{
+  font-family: 'NanumSquareRound';
+  font-size: 18px;
+  margin: 0;
+  padding-left: 10px;
+  display: inline;
+}
+
+
 
 /* --------------------
  * ArtworkList
@@ -49,6 +88,9 @@ body {
 }
 
 .list-header {
+  margin: 0  30px;
+ 
+  box-sizing: border-box;
   display: flex;
   gap: 8px;
   align-items: center;
@@ -57,19 +99,65 @@ body {
 .list-search-input {
   flex: 1; /* 모바일에서 꽉 차도록 */
   padding: 8px 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  /* border: 0.8px solid #ccc; */
+  border: none;
+  box-sizing: border-box;
+
+  
+  
+  border-radius: 20px;
   font-size: 14px;
+  background-color: #ffffff;
+  color: #000000;
+  font-family: 'NanumSquareRound';
+  font-size: 12px;
+}
+
+.list-search-input::placeholder {
+  color: #6990ad;   /* 예: 회색 */
+  opacity: 1;       /* Firefox는 기본이 0.54라 진하게 보이려면 1로 */
 }
 
 .list-refresh-button {
-  padding: 8px 12px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  background: #fff;
+  
+  width:35px;
+  height:35px;
+ 
+  border-radius: 50%;
+  padding: 0;
+  background: #ffffff;
   cursor: pointer;
-  white-space: nowrap; /* "새로고침" 줄바꿈 방지 */
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ 
 }
+
+/* 회전 css 코드 */
+
+
+
+
+
+/* 한 바퀴 회전 (ease 포함) */
+@keyframes spin360 {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.refresh-icon.spin-once {
+  animation: spin360 0.6s cubic-bezier(0.4, 0.0, 0.2, 1); 
+  margin: 0;/* ease-in-out 느낌 */
+}
+
+/* 로딩 동안 계속 회전하고 싶을 때 */
+.refresh-icon.spin-loop {
+  animation: spin360 1s linear infinite;
+  margin: 0;
+}
+
+
 
 .list-refresh-button:disabled {
   background: #f3f4f6;
@@ -78,17 +166,31 @@ body {
 }
 
 .list-scroll-area {
+  margin: 0 20px;
+  box-sizing: border-box;
+  /* 스크롤 */
   overflow-y: auto;
-  border: 1px solid #e5e7eb;
+
+  /* 모양 */
   border-radius: 12px;
   padding: 8px;
-  min-height: 0;
+
+  /* 스크롤바 숨김 (Firefox/IE/Edge 레거시) */
+  scrollbar-width: none;      /* Firefox */
+  -ms-overflow-style: none;   /* IE/Edge (레거시) */
 }
 
+/* 크로뮴/사파리 */
+.list-scroll-area::-webkit-scrollbar {
+  display: none;
+}
+
+
 .list-grid {
-  display: grid;
-  grid-template-columns: 1fr; /* 모바일용 1열 그리드 */
+  display: flex;
   gap: 12px;
+  flex-direction: column;
+  
 }
 
 .list-footer {
@@ -137,10 +239,16 @@ body {
  * -------------------- */
 .list-item {
   cursor: pointer;
-  border: 1px solid #e5e7eb;
+  border: none;
   border-radius: 12px;
   overflow: hidden;
   transition: box-shadow 0.2s;
+  box-sizing: border-box;
+  display: block;  
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #ffffff;
+
 }
 
 /* :hover로 마우스 오버 효과 대체 */
@@ -150,7 +258,7 @@ body {
 
 .list-item-header {
   padding: 12px 16px;
-  border-bottom: 1px solid #f3f4f6;
+
 }
 
 .list-item-header-top {
@@ -161,19 +269,21 @@ body {
 
 .list-item-title {
   font-weight: 600;
-  font-size: 14px;
+  font-size: 18px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-family: 'GounBatang';
 }
 
 .list-item-date {
-  font-size: 12px;
+  font-size: 10px;
   color: #6b7280;
+  font-family: 'NanumSquareRound';
 }
 
 .list-item-body {
-  padding: 16px;
+  padding: 0 16px;
 }
 
 .list-item-tags {
@@ -192,17 +302,19 @@ body {
   color: #9ca3af;
 }
 
-.list-item-divider {
-  height: 1px;
-  background: #f3f4f6;
-  margin: 12px 0;
-}
+
 
 .list-item-action {
-  text-align: right;
-  color: #2563eb;
-  font-size: 14px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 13px;
+  color: #6b7280;
+  font-family: 'NanumSquareRound';
 }
+
+
+
 
 /* --------------------
  * Tag & TypeBadge (UI)
@@ -211,17 +323,24 @@ body {
   display: inline-flex;
   align-items: center;
   padding: 2px 6px;
-  border-radius: 8px;
-  border: 1px solid #e5e7eb;
-  font-size: 12px;
+  border-radius: 12px;
+  border: 1px solid #cdecff;
+  /* background-color: #cdecff; */
+  font-size: 13px;
+  
 }
 
 .type-badge {
+  
   padding: 2px 6px;
+  padding-top:4px ;
+
   border-radius: 8px;
-  background: #f3f4f6;
-  font-size: 12px;
+  background: #ffea9d;
+  font-size: 13px;
   white-space: nowrap;
+  color: #292929;
+  font-family: 'NanumSquareRound';
 }
 
 /* --------------------
@@ -233,6 +352,7 @@ body {
   height: 100%;
   gap: 12px;
   min-height: 0;
+  width:100%;
 }
 
 .detail-header {

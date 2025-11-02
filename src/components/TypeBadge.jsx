@@ -5,16 +5,16 @@ export default function TypeBadge({ type }) {
   let label = "Picture"; // 기본값
   switch (type) {
     case "picture":
-      label = "Picture";
+      label = "그림";
       break;
     case "poem":
-      label = "Poem";
+      label = "시";
       break;
     case "3d":
-      label = "3D Model";
+      label = "3D 캐릭터";
       break;
-    case "space":
-      label = "Space";
+    case "skybox":
+      label = "공간";
       break;
     default:
       // 알 수 없는 타입도 표시

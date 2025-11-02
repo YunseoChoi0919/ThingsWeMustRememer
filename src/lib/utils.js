@@ -1,10 +1,13 @@
 import { supabase, STORAGE_BUCKET } from "./supabaseClient";
 
-export function fmtDate(iso) {
+export function fmtDate(iso, locale = "ko-KR") {
   if (!iso) return "";
   const d = new Date(iso);
-  return isNaN(d.getTime()) ? iso : d.toLocaleString();
+  return isNaN(d.getTime())
+    ? iso
+    : d.toLocaleString(locale, { timeZone: "Asia/Seoul" }); // ← KST로 고정
 }
+
 
 export function normalizeTags(meta) {
   // 사용자가 제공한 테이블 스키마에 `tag` 필드가 없으므로 `tags`만 사용합니다.

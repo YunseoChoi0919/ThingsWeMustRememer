@@ -32,8 +32,8 @@ export default function ArtworkListItem({ meta, onClick }) {
           ) : (
             <div className="list-item-no-tags">태그 없음</div>
           )}
-          <div className="list-item-divider" />
-          <div className="list-item-action">자세히 보기 →</div>
+          
+          <div className="list-item-action"><p>자세히 보기</p></div>
         </div>
       </div>
     </motion.div>
