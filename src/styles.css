@@ -64,6 +64,7 @@ body {
   letter-spacing: -1.0px;
   line-height: 1.3;
   margin-bottom: 20px;
+  z-index: 920;
 }
 
 .page-subtitle{
@@ -357,7 +358,7 @@ body {
 
 .detail-header {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: flex-start; /* 제목이 길 경우 대비 */
   gap: 12px;
 }
@@ -411,7 +412,7 @@ body {
   border: 1px solid #e5e7eb;
   border-radius: 12px;
   overflow: hidden;
-  min-height: 200px; /* 최소 높이 */
+  min-height: 300px; /* 최소 높이 */
   background: #f9fafb; /* 로딩/에러시 배경 */
   position: relative; /* 3D 로더를 위해 */
 }
@@ -480,3 +481,83 @@ body {
   border-radius: 8px;
   font-size: 14px;
 }
+
+/* 뷰어 관련 */
+/* ===============================================
+  [추가] ArtworkDetail 뷰어 크기 조절
+===============================================
+*/
+
+/* * 기존 .detail-container의 grid-template-rows가 'auto auto 1fr' (헤더, 메타, 뷰어)로
+ * 설정되어 있다고 가정합니다. 
+ * (이전 대화에서 이 구조를 사용했습니다.)
+ */
+.detail-container {
+  display: grid;
+  grid-template-rows: auto auto 1fr; /* 뷰어가 남은 공간(1fr)을 채움 (기본값) */
+  height: 100%;
+  gap: 12px;
+  min-height: 0;
+}
+
+
+/* --- 뷰어 타입별 높이 조절 --- */
+
+/* 1. 3D 모델과 Skybox: 뷰어 행(row)의 높이를 60vh로 고정합니다. */
+.detail-container.type-3d,
+.detail-container.type-skybox {
+  /* grid-template-rows: [헤더]auto [메타]auto [뷰어]60vh */
+  grid-template-rows: auto auto 60vh;
+}
+
+/* 2. Picture와 Poem: 뷰어 행(row)의 높이를 'auto' (컨텐츠 크기)로 설정합니다. */
+.detail-container.type-picture{
+  grid-template-rows: auto auto auto;
+}
+.detail-container.type-poem {
+  /* grid-template-rows: [헤더]auto [메타]auto [뷰어]auto */
+  grid-template-rows: auto auto 160px;
+}
+
+/* 3. Picture/Poem일 때, 뷰어 컨테이너의 최대 높이를 제한합니다.
+   (이미지가 너무 클 경우 화면을 다 차지하는 것을 방지)
+*/
+.detail-container.type-picture .detail-viewer-container,
+.detail-container.type-poem .detail-viewer-container {
+  max-height: 70vh; /* 화면 높이의 70%를 넘지 않음 */
+  height: auto;
+}
+
+/* ==========================================================
+  [FIX] 모바일 Skybox 뷰어 높이 수정 (다른 타입 영향 없음)
+========================================================== */
+
+/* 1. 모바일 + Skybox일 때, 뷰어 행의 높이를 'auto'로 변경
+ * (데스크톱의 60vh 고정값을 덮어씁니다) */
+.detail-container.type-skybox.is-mobile {
+  grid-template-rows: auto auto auto;
+}
+
+/* 2. 모바일 + Skybox일 때, 뷰어 컨테이너의 300px 최소 높이를 제거하고
+ * 이미지 높이에 맞추도록 'auto'로 설정합니다. */
+.detail-container.type-skybox.is-mobile .detail-viewer-container {
+  min-height: 180px; /* 300px 덮어쓰기 */
+  height: auto;
+ 
+}
+
+/* 3. 모바일 + Skybox 내부의 PictureViewer가
+ * 이미지 높이에 맞도록 height: 100%를 덮어씁니다. */
+.detail-container.type-skybox.is-mobile .picture-viewer {
+  height: auto; /* height: 100% 덮어쓰기 */
+}
+
+/* 4. 모바일 + Skybox 내부의 이미지가
+ * 뷰어 높이를 따르도록 max-height: 100%를 덮어씁니다. */
+.detail-container.type-skybox.is-mobile .picture-viewer-img {
+  height: auto; /* 비율 유지 */
+  max-height: none; /* max-height: 100% 덮어쓰기 */
+}
+
+
+

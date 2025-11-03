@@ -1,0 +1,41 @@
+/* src/components/layout/MenuButton.css */
+
+.menu-button {
+  /* 1. 브라우저 기본 버튼 스타일 제거 */
+  background: none;
+  border: none;
+  padding: 4px; /* 클릭 영역을 아이콘보다 살짝 넓게 */
+  margin: 0;
+  
+  /* 2. 커서 및 정렬 */
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* 3. 아이콘 색상 (이 색을 바꾸면 SVG 선 색이 바뀝니다) */
+  color: #333333; /* 예: 어두운 회색 */
+
+  /* 4. 클릭 시 파란색 테두리(outline) 제거 (선택 사항) */
+  outline: none; 
+
+  /* 5. 부드러운 전환 효과 및 원형 피드백 */
+  transition: background-color 0.2s;
+  border-radius: 50%;
+  position: fixed;
+  right: 20px;
+  top:20px;
+    z-index: 910; /* 사이드바보다 위에 나타나도록 설정 *
+}
+
+/* 6. 마우스 호버 또는 키보드 포커스 시 시각적 피드백 */
+.menu-button:hover,
+.menu-button:focus-visible {
+  background-color: rgba(0, 0, 0, 0.05); /* 살짝 어두운 배경 */
+}
+
+/* 7. 아이콘 SVG 크기 (필요시 조절) */
+.menu-button-icon {
+  width: 24px;
+  height: 24px;
+}

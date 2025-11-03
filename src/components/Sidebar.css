@@ -1,0 +1,106 @@
+/* src/components/layout/Sidebar.css */
+
+/* 반투명 배경 */
+.sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 900;
+  
+  /* [수정] 애니메이션을 클래스로 제어 */
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards; /* 애니메이션 끝난 상태 유지 */
+}
+
+/* 메뉴 패널 (오른쪽에 붙음) */
+.sidebar-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 180px;
+  max-width: 80%;
+  height: 100%;
+  background: #ffd786;
+  box-shadow: -4px 0 15px rgba(0, 0, 0, 0.1);
+  z-index: 901;
+
+  /* [수정] 애니메이션을 클래스로 제어 */
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards; /* 애니메이션 끝난 상태 유지 */
+}
+
+/* --- [수정] 열림/닫힘 클래스 --- */
+
+.sidebar-backdrop.is-open {
+  animation-name: fadeIn;
+  animation-timing-function: ease-out;
+}
+.sidebar-panel.is-open {
+  animation-name: slideInFromRight;
+  animation-timing-function: ease-out;
+}
+
+.sidebar-backdrop.is-closing {
+  animation-name: fadeOut;
+  animation-timing-function: ease-in;
+}
+.sidebar-panel.is-closing {
+  animation-name: slideOutToRight;
+  animation-timing-function: ease-in;
+}
+
+/* --- (메뉴 항목 스타일은 동일) --- */
+.sidebar-panel nav {
+  display: flex;
+  flex-direction: column;
+  padding-top: 40px;
+  gap: 15px;
+  padding-left: 20px;
+  padding-top: 60px;
+}
+.sidebar-nav-item {
+  display: block;
+  text-align: center;
+  border-radius: 30px;
+  box-sizing: border-box;
+  width:130px;
+  padding: 5px 4px;
+  /* padding: 16px 24px; */
+  font-family: 'NanumSquareRound', sans-serif; 
+  font-size: 18px;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.2s;
+  background-color: rgb(255, 240, 221);
+}
+
+
+.sidebar-nav-item:hover {
+  background-color: #f4f4f4;
+}
+
+/* --- 애니메이션 키프레임 --- */
+
+/* (기존) 배경이 서서히 나타남 */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* (기존) 패널이 오른쪽에서 나옴 */
+@keyframes slideInFromRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+/* [추가] 배경이 서서히 사라짐 */
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* [추가] 패널이 오른쪽으로 들어감 */
+@keyframes slideOutToRight {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
+}

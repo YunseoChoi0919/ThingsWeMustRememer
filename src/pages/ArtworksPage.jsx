@@ -1,31 +1,65 @@
+// src/pages/ArtworksPage.jsx
+
 import React, { useState } from "react";
+// [1. 수정] useNavigate 임포트, ArtworkDetail 제거
+import { useNavigate } from "react-router-dom";
 import ArtworkList from "../components/ArtworkList";
-import ArtworkDetail from "../components/ArtworkDetail";
 import "../styles.css";
+import MenuButton from "../components/MenuButton.jsx";
+import Sidebar from "../components/Sidebar";
+import header2 from "../assets/header2.svg";
 
 export default function ArtworksPage() {
-  const [selected, setSelected] = useState(null);
+  // [2. 수정] selected 상태 제거
+  // const [selected, setSelected] = useState(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  
+  // [3. 추가] navigate 함수 생성
+  const navigate = useNavigate();
 
-  // selected 상태에 따라 상세 뷰를 렌더링
+  const toggleSidebar = () => {
+    // 진동 API (안드로이드)
+    if (navigator.vibrate) {
+      navigator.vibrate(15);
+    }
+    setIsSidebarOpen(prev => !prev);
+  };
+
+  // [4. 추가] 리스트 항목 클릭 시 상세 페이지로 이동하는 핸들러
+  const handleSelect = (meta) => {
+    navigate(`/artwork/${meta.id}`);
+  };
+
+  // [5. 수정] if (selected) { ... } 블록 전체 삭제
+  /*
   if (selected) {
-    return (
-      <div className="artworks-page">
-        {/* 상세 뷰는 h1이 필요 없으므로 꽉 채웁니다. */}
-        {/* CSS에서 .artworks-page가 grid-template-rows: auto 1fr; 이므로 
-            이 컴포넌트가 1fr 영역을 차지하게 합니다. */}
-        <style>{`.artworks-page { grid-template-rows: 1fr; padding: 16px 16px 0 16px; }`}</style>
-        <ArtworkDetail meta={selected} onBack={() => setSelected(null)} />
-      </div>
-    );
+    ... (이 부분 전체 삭제) ...
   }
+  */
 
-  // 기본 목록 뷰
+  // 기본 목록 뷰 (이제 유일한 return문)
   return (
     <div className="artworks-page">
-      <div className="page-title">우리가 잊지 말아야 할 것은 <br></br>무엇인가요 
-      <p className="page-subtitle">Archive web</p></div>
-      
-      <ArtworkList onSelect={setSelected} />
+      <Sidebar
+        isOpen={isSidebarOpen}
+        onClose={() => setIsSidebarOpen(false)}
+      />
+
+     
+
+      <div className="artworks-header">
+        <MenuButton onClick={toggleSidebar} />
+        
+        <div className="page-title">
+          우리가 잊지 말아야 할 것은 <br />
+          무엇인가요
+          <p className="page-subtitle">Archive web</p>
+          
+        </div>
+      </div>
+
+      {/* [6. 수정] onSelect에 setSelected 대신 handleSelect 전달 */}
+      <ArtworkList onSelect={handleSelect} />
     </div>
   );
 }
