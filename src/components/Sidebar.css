@@ -72,8 +72,12 @@
   text-decoration: none;
   transition: background-color 0.2s;
   background-color: rgb(255, 240, 221);
+  text-decoration: none;
 }
 
+.sidebar-nav-item link a:active{
+  color:#333;
+}
 
 .sidebar-nav-item:hover {
   background-color: #f4f4f4;

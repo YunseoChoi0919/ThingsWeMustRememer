@@ -42,6 +42,10 @@ body {
   box-sizing: border-box;
 }
 
+
+
+
+
 /* * 모바일 레이아웃: 
  * ArtworksPage는 h1(auto)과 컨텐츠(1fr)로 구성된 세로 그리드.
  * List와 Detail 컴포넌트가 이 1fr 영역을 100% 채웁니다.
@@ -49,11 +53,17 @@ body {
 .artworks-page {
   padding: 16px;
   width: 100vw;
-  height: 100vh;
+  
   display: grid;
   grid-template-rows: auto 1fr;
   gap: 12px;
-  min-height: 0; /* flex/grid 자식의 overflow-scrolling을 위해 */
+  height: 100vh;
+
+
+}
+
+#artwork-detail-page{
+  height: auto;
 }
 
 .page-title {
@@ -359,18 +369,47 @@ body {
 .detail-header {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* 제목이 길 경우 대비 */
+  /* align-items: flex-start; <-- 이 줄을 삭제하거나 */
+  align-items: stretch; /* <-- 'stretch'로 변경합니다 (stretch가 기본값) */
   gap: 12px;
 }
 
+/* ArtworkDetail.jsx의 .detail-header 내부
+  첫 번째 자식 div (제목과 부제목을 감싸는 div)에
+  너비를 100%로 강제합니다.
+*/
+.detail-header > div:first-child {
+  width: 100%;
+}
+
 .detail-title {
-  font-size: 20px;
+ 
+
+  font-size: 30px;
   font-weight: 700;
+  padding-right: 30px;
+  white-space: normal;
+  word-break: keep-all;   /* 특히 한글에 효과적 */
+  overflow-wrap: normal;  /* 이 줄은 아예 빼도 됨 */
 }
 
 .detail-subtitle {
   font-size: 12px;
   color: #6b7280;
+  font-family: "NanumSquareRound";
+  margin-top: 5px;
+}
+
+
+.detail-tag{
+  /* border: rgb(178, 224, 255) solid 1px; */
+  /* box-shadow: rgba(22, 47, 112, 0.3) 1px 1px 4px -1px; */
+  font-size: 15px;
+  padding: 3px 8px;
+  border-radius: 15px;
+  color: rgb(78, 78, 78);
+  background-color: rgb(240, 247, 255);
+  
 }
 
 .detail-header-actions {
@@ -381,9 +420,28 @@ body {
 }
 
 .detail-action-link {
-  color: #2563eb;
-  text-decoration: underline;
-  font-size: 14px;
+  color: #232996;
+  font-size: 13px;
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  padding: 3px 8px;
+  border-radius: 5px;
+  font-family: "nanumSquareRound";
+}
+
+.detail-btns{
+  display: flex;
+  gap: 8px;
+
+}
+
+.detail-header-actions{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .detail-back-button {
@@ -395,15 +453,23 @@ body {
 }
 
 .detail-meta-tags {
+  margin-top: 5px;
   display: flex;
   gap: 6px;
   flex-wrap: wrap;
   margin-bottom: 8px;
 }
 
+.detail-meta-title{
+  color: #494e56;
+  padding-top: 15px;
+  padding-bottom: 5px;
+  font-size: 15px;
+}
+
 .detail-meta-prompt {
   font-size: 14px;
-  color: #6b7280;
+  color: #494e56;
   white-space: pre-wrap; /* 프롬프트 줄바꿈 */
   word-break: break-all;
 }
@@ -450,8 +516,6 @@ body {
 
 .poem-viewer {
   padding: 24px;
-  white-space: pre-wrap; /* 시 형식 유지 */
-  word-break: break-word;
   font-family: "Georgia", "Times New Roman", serif;
   font-size: 16px;
   line-height: 1.6;
@@ -516,7 +580,7 @@ body {
 }
 .detail-container.type-poem {
   /* grid-template-rows: [헤더]auto [메타]auto [뷰어]auto */
-  grid-template-rows: auto auto 160px;
+  grid-template-rows: auto auto auto;
 }
 
 /* 3. Picture/Poem일 때, 뷰어 컨테이너의 최대 높이를 제한합니다.
@@ -559,5 +623,16 @@ body {
   max-height: none; /* max-height: 100% 덮어쓰기 */
 }
 
+
+.detail-btns{
+  padding: 0;
+}
+
+
+#artworks-list-footer{
+  margin-top: 0;
+  justify-content: center;
+  background-color: thistles;
+}
 
 

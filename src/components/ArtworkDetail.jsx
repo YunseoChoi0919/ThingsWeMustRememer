@@ -4,20 +4,19 @@ import Tag from "./Tag";
 import PictureViewer from "./viewers/PictureViewer";
 import ModelViewer from "./viewers/ModelViewer";
 import SkyboxViewer from "./viewers/SkyboxViewer";
+import TypeBadge from "./TypeBadge";
 
-import BackButton from "./BackButton"; // 이 컴포넌트가 "뒤로 가기"를 담당
+import BackButton from "./BackButton";
 
 import { useIsMobile } from "../hooks/useIsMobile"; 
 import "../styles.css";
 
-// [1. 수정] onBack prop 제거
 export default function ArtworkDetail({ meta }) {
   const [url, setUrl] = useState(null);
   const [error, setError] = useState(null);
 
   const isMobile = useIsMobile();
 
-  // ... (useEffect, tags, allowedTypes, containerClassName 등은 동일) ...
   useEffect(() => {
     let alive = true;
     setUrl(null); 
@@ -35,8 +34,36 @@ export default function ArtworkDetail({ meta }) {
     };
   }, [meta.file_name]);
 
-  const tags = normalizeTags(meta);
+  // 파일 다운로드 핸들러
+  const handleDownload = async () => {
+    if (!url) return;
+
+    try {
+      const response = await fetch(url);
+      const blob = await response.blob();
+      const blobUrl = window.URL.createObjectURL(blob);
+
+      const link = document.createElement('a');
+      link.href = blobUrl;
+      link.download = meta.file_name || 'download';
+
+      document.body.appendChild(link);
+      link.click();
+
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(blobUrl);
+    } catch (e) {
+      console.error("파일 다운로드 실패:", e);
+      alert("파일 다운로드에 실패했습니다.");
+    }
+  };
+
   const allowedTypes = ["picture", "poem", "3d", "skybox"];
+
+  // ✅ 태그를 길이 순으로 정렬 (짧은 것부터)
+  const tags = normalizeTags(meta)
+    .slice() // 원본 보호
+    .sort((a, b) => a.length - b.length);
 
   const containerClassName = `
     detail-container 
@@ -55,30 +82,45 @@ export default function ArtworkDetail({ meta }) {
           </div>
         </div>
         <div className="detail-header-actions">
-          {url && (
-            <a
-              href={url}
-              target="_blank"
-              rel="noreferrer"
-              className="detail-action-link"
-            >
-              원본
-            </a>
-          )}
-          {/* [2. 삭제] '목록으로' 버튼 삭제 */}
-          {/* <button onClick={onBack} className="detail-back-button">
-            목록으로
-          </button>
-          */}
-          
-          {/* [3. 유지] 이 BackButton이 '목록으로' 버튼을 대체합니다. */}
+          <div className="detail-btns">
+            {url && (
+              <a
+                href={url}
+                target="_blank"
+                rel="noreferrer"
+                className="detail-action-link"
+              >
+                원본 보기
+              </a>
+            )}
+
+            {url && (
+              <button
+                onClick={handleDownload}
+                className="detail-action-link"
+              >
+                원본 다운로드
+              </button>
+            )}
+          </div>
+
+          <TypeBadge type={meta.type} />
           <BackButton/>
         </div>
       </div>
 
+      {tags.length > 0 && (
+        <div className="detail-meta-tags">
+          {tags.map((t) => (
+            <div className="detail-tag" key={t}>
+              {t}
+            </div>
+          ))}
+        </div>
+      )}
+
       {/* 뷰어 */}
       <div className="detail-viewer-container">
-        {/* ... (뷰어 로직은 동일) ... */}
         {!url && !error && (
           <div className="detail-viewer-message">파일 URL 로딩 중...</div>
         )}
@@ -114,16 +156,9 @@ export default function ArtworkDetail({ meta }) {
         )}
       </div>
 
-      {/* 메타: 태그, 프롬프트 */}
+      {/* 메타 */}
       <div>
-        {/* ... (태그, 프롬프트 로직은 동일) ... */}
-        {tags.length > 0 && (
-          <div className="detail-meta-tags">
-            {tags.map((t) => (
-              <Tag key={t}>{t}</Tag>
-            ))}
-          </div>
-        )}
+        <div className="detail-meta-title">생성된 프롬프트</div>
         {meta.prompt && (
           <div className="detail-meta-prompt">{meta.prompt}</div>
         )}

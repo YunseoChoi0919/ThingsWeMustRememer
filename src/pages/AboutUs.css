@@ -1,0 +1,24 @@
+
+.members{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.member{
+    display: flex;
+}
+
+#about-us-content{
+    height: auto;
+    background-color: #c6e3ff;
+
+}
+
+
+.profile img{
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: 20px;
+}

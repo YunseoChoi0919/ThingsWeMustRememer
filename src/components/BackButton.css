@@ -29,6 +29,7 @@
   /* 5. 부드러운 전환 효과 및 원형 피드백 */
   transition: background-color 0.2s;
   border-radius: 50%;
+  z-index: 99999;
 }
 
 /* 6. 마우스 호버 또는 키보드 포커스 시 시각적 피드백 */

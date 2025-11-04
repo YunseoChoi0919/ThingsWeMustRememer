@@ -7,6 +7,7 @@ import ArtworkDetail from "../components/ArtworkDetail";
 import Sidebar from "../components/Sidebar"; // [수정] Sidebar 임포트 경로 확인
 import MenuButton from "../components/MenuButton"; // [수정] MenuButton 임포트 경로 확인
 import "../styles.css";
+import Footer from "../components/Footer.jsx";
 
 export default function ArtworkDetailPage() {
   const { id } = useParams(); // URL에서 :id 값을 가져옵니다
@@ -31,7 +32,7 @@ export default function ArtworkDetailPage() {
   // [FIX] 로딩 조건 수정: loading이 true이거나, 아직 items가 null일 때
   if (loading || !items) {
     return (
-      <div className="artworks-page">
+      <div className="artworks-page" >
         <div className="artworks-header">
           <MenuButton />
         </div>
@@ -59,7 +60,7 @@ export default function ArtworkDetailPage() {
   
   // 성공적으로 meta 객체를 찾았을 때
   return (
-    <div className="artworks-page">
+    <div className="artworks-page" id="artwork-detail-page">
       <Sidebar
         isOpen={isSidebarOpen}
         onClose={() => setIsSidebarOpen(false)}
@@ -69,6 +70,7 @@ export default function ArtworkDetailPage() {
       </div>
       
       <ArtworkDetail meta={meta} />
+      <Footer />
     </div>
   );
 }
