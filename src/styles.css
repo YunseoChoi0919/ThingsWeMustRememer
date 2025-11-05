@@ -354,6 +354,15 @@ body {
   font-family: 'NanumSquareRound';
 }
 
+.mail{
+  background: #ffea9d;
+  border-radius: 10px;
+  color: #292929;
+  padding: 2px 10px;
+  font-size: 15px;
+  width: fit-content;
+}
+
 /* --------------------
  * ArtworkDetail
  * -------------------- */
@@ -629,10 +638,5 @@ body {
 }
 
 
-#artworks-list-footer{
-  margin-top: 0;
-  justify-content: center;
-  background-color: thistles;
-}
 
 

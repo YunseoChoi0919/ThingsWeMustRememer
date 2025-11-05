@@ -5,3 +5,56 @@
 .intro-content{
     text-align: justify;
 }
+
+.main-title{
+    font-family: "NanusquareRound";
+    font-size: 25px;
+    padding-top: 30px;
+    padding-bottom: 10px;
+
+}
+
+.intro-content{
+    padding: 0 15px 10px 15px;
+    color: black;
+    line-height:1.7;
+    letter-spacing: -0.2px;
+
+}
+
+.quote{
+    font-family: "NanumsquareRound";
+    font-size: 18px;
+    background-color: aliceblue;
+    margin: 10px 15px 20px 15px;
+    padding: 20px;
+    border-radius: 10px;
+    word-break: keep-all;
+}
+
+.caption-en{
+    font-size: 15px;
+    color: gray;
+    padding-top: 10px;
+    
+}
+
+.quote .caption-ko span{
+   
+ background-color: rgb(255, 236, 153);
+ padding: 1px 3px;
+ border-radius: 3px;
+ 
+}
+
+.intro-content{
+    font-size: 17px;
+}
+
+
+.intro-content span{
+    text-decoration: underline ;
+    text-decoration-color: rgba(0, 140, 255, 0.3);
+     text-decoration-thickness: 3px;
+   
+}
