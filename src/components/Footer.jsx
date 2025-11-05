@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div>© {year} All rights reserved. </div>
-      <div className="maker">made by Eva </div>
+      <div className="maker">by Eva </div>
     </footer>
   );
 }
