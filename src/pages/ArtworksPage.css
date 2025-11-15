@@ -1,5 +1,25 @@
 /* src/styles/ArtworksPage.css */
 
+ @font-face {
+    font-family: 'GounBatang';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunBatang-Regular.woff') format('woff');
+    font-weight: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'GounBatang';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunBatang-Bold.woff') format('woff');
+    font-weight: 700;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'NanumSquareRound';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
+    font-weight: normal;
+    font-display: swap;
+}
 /* --- 기본 설정 --- */
 .artworks-page-container {
     padding: 12px; /* 모바일 기본 패딩 */
@@ -13,6 +33,7 @@
     font-size: 20px;
     font-weight: 800;
     margin: 0;
+    
 }
 
 /* --- 컴포넌트 내부 스타일 --- */
@@ -51,6 +72,7 @@
 .item-title {
     margin: 0;
     font-weight: 600;
+
 }
 
 .item-meta {
@@ -72,6 +94,8 @@
     margin-top: 0;
     margin-bottom: 8px;
     font-size: 20px;
+    
+    
 }
 
 .detail-meta {

@@ -1,0 +1,219 @@
+@font-face {
+    font-family: 'GounBatang';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunBatang-Regular.woff') format('woff');
+    font-weight: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'GounBatang';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunBatang-Bold.woff') format('woff');
+    font-weight: 700;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'NanumSquareRound';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
+    font-weight: normal;
+    font-display: swap;
+}
+
+.our-works-page {
+    height: auto;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.work-file .video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 비율 */
+  height: 0;
+  border: none;
+}
+
+.work-file .video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.main-title {
+  font-family: "NanumSquareRound";
+   
+   
+}
+
+.desc,
+.work-description {
+    white-space: normal !important;
+    overflow-wrap: break-word;
+    text-align: justify;
+   
+}
+
+/* ----- 여기부터 our-works 영역 슬라이더 스타일 ----- */
+
+.our-works-slider {
+  margin-top: 30px;
+}
+
+/* 카드 1개만 담는 컨테이너 */
+.our-works {
+  display: block;
+}
+
+/* 상단 메타 정보 (작품 아카이브 / n / total) */
+.work-slider-meta {
+  max-width: 920px;
+  margin: 0 auto 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-size: 13px;
+  color: #666;
+  font-family: "NanumSquareRound";
+}
+
+.work-slider-label {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.work-slider-count {
+  font-size: 12px;
+  color: #999;
+}
+
+/* 카드 스타일 */
+.work-item {
+  background-color: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.06);
+  padding: 24px 20px 28px;
+  max-width: 920px;
+  margin: 0 auto;
+  animation: fadeInUp 0.45s ease;
+}
+
+@media (min-width: 768px) {
+  .work-item {
+    padding: 32px 32px 36px;
+  }
+}
+
+/* 카드 상단 헤더는 기존 디자인 최대한 유지 */
+.work-header {
+  border-left: 3px solid rgb(158, 221, 255);
+  padding: 10px 10px 10px 0;
+  padding-left: 15px;
+  margin-bottom: 20px;
+  background-image: linear-gradient(to right, aliceblue, rgba(240, 248, 255, 0));
+  text-align: justify;
+}
+
+.work-header span {
+  font-size: 18px;
+}
+
+.work-subtitle {
+  margin-top: 10px;
+  color: rgb(100, 100, 100);
+  font-size: 14px;
+}
+
+.work-title {
+  font-size: 23px;
+  font-family: "NanumSquareRound";
+  white-space: pre-line;
+}
+
+.work-description {
+  margin-top: 20px;
+}
+
+/* 하단 좌우 네비 + 인디케이터 점 */
+.work-slider-controls {
+  max-width: 920px;
+  margin: 20px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.work-slider-nav-button {
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 8px 14px;
+  background: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-family: "NanumSquareRound";
+  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.work-slider-nav-button:hover {
+  background: #f7fafc;
+  border-color: rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+}
+
+.work-slider-nav-button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.work-slider-nav-button .arrow {
+  font-size: 14px;
+}
+
+.work-slider-nav-button .text {
+  white-space: nowrap;
+}
+
+.work-slider-dots {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.work-slider-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  border: none;
+  background: #d0d7dd;
+  padding: 0;
+  cursor: pointer;
+  transition: width 0.2s ease, background 0.2s ease, transform 0.15s ease, opacity 0.2s ease;
+  opacity: 0.7;
+}
+
+.work-slider-dot.active {
+  width: 18px;
+  background: rgb(158, 221, 255);
+  transform: translateY(-1px);
+  opacity: 1;
+}
+
+/* 부드럽게 올라오는 카드 애니메이션 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

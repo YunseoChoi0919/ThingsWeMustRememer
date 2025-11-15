@@ -284,7 +284,7 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-family: 'GounBatang';
+  font-family: 'NanumSquareRound';
 }
 
 .list-item-date {
@@ -399,7 +399,8 @@ body {
   padding-right: 30px;
   white-space: normal;
   word-break: keep-all;   /* 특히 한글에 효과적 */
-  overflow-wrap: normal;  /* 이 줄은 아예 빼도 됨 */
+  overflow-wrap: normal;
+  font-family: "NanumSquareRound";  /* 이 줄은 아예 빼도 됨 */
 }
 
 .detail-subtitle {

@@ -55,8 +55,8 @@ export default function AboutUs() {
           </div>
           <div className="profile-contents">
             <div className="member-name"> 김대희</div>
-            <div className="member-intro">서강대학교 아트&테크놀로지 학과 23학번 김대희입니다.
-              게임 개발관련해서 관심이 많습니다.
+            <div className="member-intro">아트&테크놀로지학과 23학번 김대희입니다. 주로 게임 개발과 관련하여 재미를 느끼고 여러 경험을 해보고 있습니다.
+            
             </div>
            <div className="contact">
               <div className="mail">kdaehee1021@gmail.com</div>
@@ -76,8 +76,7 @@ export default function AboutUs() {
           <div className="profile-contents">
             <div className="member-name">김시윤</div>
             <div className="member-intro">
-              팀 내에서 유치원 교사를 담당하고 있습니다.
-            교환학생 중인데 초딩같은 팀원들이 걱정이에요.
+              다양한 경험을 쌓고 있는 김시윤입니다. 전공을 살려 예술과의 경계를 허무는 개발자를 꿈꾸고 있습니다. 프론트/백엔드, 게임, 임베디드 개발 등 가리지 않고 도전 중입니다.
             </div>
 
                        <div className="contact">
