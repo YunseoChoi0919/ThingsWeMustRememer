@@ -2,10 +2,18 @@ import { supabase, STORAGE_BUCKET } from "./supabaseClient";
 
 export function fmtDate(iso, locale = "ko-KR") {
   if (!iso) return "";
-  const d = new Date(iso);
+
+  // 1. 날짜 문자열에서 '+' 기호 앞부분만 잘라냅니다.
+  // 예: "2025-08-18 13:26:56.612814+00" -> "2025-08-18 13:26:56.612814"
+  // 이렇게 하면 브라우저는 뒤의 타임존을 무시하고, 적혀있는 시간 숫자를 그대로 받아들입니다.
+  const localDateStr = iso.split('+')[0]; 
+
+  const d = new Date(localDateStr);
+
+  // 2. toLocaleString은 별도 옵션이 없으면 입력된 시간 그대로 현지 포맷으로 바꿔줍니다.
   return isNaN(d.getTime())
     ? iso
-    : d.toLocaleString(locale, { timeZone: "Asia/Seoul" }); // ← KST로 고정
+    : d.toLocaleString(locale); 
 }
 
 
